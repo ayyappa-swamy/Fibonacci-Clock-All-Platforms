@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=Fibclock
+_Comment=Fibclock application
+Categories=GNOME;Utility;
+Exec=fibclock
+Icon=fibclock
+Terminal=false
+Type=Application
