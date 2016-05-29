@@ -3,14 +3,10 @@
   <!-- interface-requires gtk+ 3.0 -->
   <!-- interface-requires fibclock_window 1.0 -->
   <!-- interface-local-resource-path ../media -->
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-help</property>
-  </object>
   <object class="FibclockWindow" id="fibclock_window">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Fibclock</property>
+    <property name="title" translatable="yes">Fibonacci Clock</property>
+    <property name="resizable">False</property>
     <property name="icon">../media/fibclock.svg</property>
     <child>
       <object class="GtkVBox" id="vbox1">
@@ -250,24 +246,180 @@ How to determine the time ?
             <property name="track_visited_links">False</property>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <object class="GtkDrawingArea" id="drawingarea1">
-            <property name="height_request">270</property>
+          <object class="GtkFrame" id="frame1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
+            <property name="label_xalign">0</property>
+            <property name="shadow_type">etched-out</property>
+            <child>
+              <object class="GtkAlignment" id="alignment1">
+                <property name="width_request">0</property>
+                <property name="height_request">0</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="top_padding">8</property>
+                <property name="bottom_padding">8</property>
+                <property name="left_padding">16</property>
+                <property name="right_padding">16</property>
+                <child>
+                  <object class="GtkGrid" id="grid5">
+                    <property name="height_request">340</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="column_spacing">10</property>
+                    <child>
+                      <object class="GtkDrawingArea" id="drawAreaFor5">
+                        <property name="width_request">340</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkGrid" id="grid3">
+                        <property name="width_request">204</property>
+                        <property name="height_request">340</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="row_spacing">10</property>
+                        <child>
+                          <object class="GtkDrawingArea" id="drawAreaFor3">
+                            <property name="height_request">204</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkGrid" id="grid2">
+                            <property name="width_request">204</property>
+                            <property name="height_request">136</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="column_spacing">10</property>
+                            <child>
+                              <object class="GtkDrawingArea" id="drawAreaFor2">
+                                <property name="width_request">136</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">0</property>
+                                <property name="width">1</property>
+                                <property name="height">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkGrid" id="grid1">
+                                <property name="width_request">68</property>
+                                <property name="height_request">136</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="row_spacing">10</property>
+                                <child>
+                                  <object class="GtkDrawingArea" id="drawAreaFor1a">
+                                    <property name="height_request">68</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                    <property name="width">1</property>
+                                    <property name="height">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkDrawingArea" id="drawAreaFor1b">
+                                    <property name="width_request">68</property>
+                                    <property name="height_request">68</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="width">1</property>
+                                    <property name="height">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="top_attach">0</property>
+                                <property name="width">1</property>
+                                <property name="height">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">   Fibonacci Time</property>
+                <property name="use_markup">True</property>
+                <attributes>
+                  <attribute name="style" value="normal"/>
+                  <attribute name="weight" value="semibold"/>
+                  <attribute name="variant" value="small-caps"/>
+                  <attribute name="stretch" value="semi-expanded"/>
+                  <attribute name="foreground" value="#68a14eb14eb1"/>
+                </attributes>
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
             <property name="position">2</property>
           </packing>
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-help</property>
   </object>
 </interface>

@@ -52,6 +52,8 @@ class FibclockWindow(Window):
         self.draw2.override_background_color(Gtk.StateFlags.NORMAL,draw2RGBA)        
         self.draw1a.override_background_color(Gtk.StateFlags.NORMAL,draw1aRGBA)        
         self.draw1b.override_background_color(Gtk.StateFlags.NORMAL,draw1bRGBA)
+        time.sleep(2)
+        self.runClock(schedule)
         #schedule.enter(2, 1, self.runClock, (schedule,))
     
     def showCurrentTime(self):
