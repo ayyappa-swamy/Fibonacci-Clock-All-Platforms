@@ -69,7 +69,7 @@ def currentFibonacciTime():
 
 	return colors
 
-#print currentFibonacciTime()
+print currentFibonacciTime()
 
 
 def getFibonacciTime(hrs,mins):

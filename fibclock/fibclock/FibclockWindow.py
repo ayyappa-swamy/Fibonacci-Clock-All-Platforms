@@ -6,12 +6,14 @@
 
 import getFibTime
 import sched, time
+from threading import Thread
 
 import gettext
 from gettext import gettext as _
 gettext.textdomain('fibclock')
 
-from gi.repository import Gtk, Gdk # pylint: disable=E0611
+from gi.repository import Gtk, Gdk
+import gobject # pylint: disable=E0611
 import logging
 logger = logging.getLogger('fibclock')
 
@@ -28,7 +30,7 @@ colors['Green'] = {"Red":0, "Green":255,"Blue":0}
 # See fibclock_lib.Window.py for more details about how this class works
 class FibclockWindow(Window):
     __gtype_name__ = "FibclockWindow"
-    
+        
     def setRGBA(self,color):
         red = colors[color]['Red']
         green = colors[color]['Green']
@@ -37,29 +39,23 @@ class FibclockWindow(Window):
         colorRGBA = Gdk.RGBA(red, green, blue)
         
         return colorRGBA
-        
-    def runClock(self,schedule):
+    
+    def updateUI(self):
+    
         curTimeColors = getFibTime.currentFibonacciTime()
-        
         draw5RGBA = self.setRGBA(curTimeColors[5])        
         draw3RGBA = self.setRGBA(curTimeColors[3])        
         draw2RGBA = self.setRGBA(curTimeColors[2])        
         draw1aRGBA = self.setRGBA(curTimeColors[1][0])        
         draw1bRGBA = self.setRGBA(curTimeColors[1][1])
-
-        self.draw5.override_background_color(Gtk.StateFlags.NORMAL,draw5RGBA)        
-        self.draw3.override_background_color(Gtk.StateFlags.NORMAL,draw3RGBA)        
-        self.draw2.override_background_color(Gtk.StateFlags.NORMAL,draw2RGBA)        
-        self.draw1a.override_background_color(Gtk.StateFlags.NORMAL,draw1aRGBA)        
-        self.draw1b.override_background_color(Gtk.StateFlags.NORMAL,draw1bRGBA)
-        #schedule.enter(2, 1, self.runClock, (schedule,))
-    
-    def showCurrentTime(self):
-        clockScheduler = sched.scheduler(time.time, time.sleep)
         
-        clockScheduler.enter(1, 1, self.runClock, (clockScheduler,))
-        clockScheduler.run()
-
+        self.draw5.override_background_color(Gtk.StateFlags.NORMAL,draw5RGBA)
+        self.draw3.override_background_color(Gtk.StateFlags.NORMAL,draw3RGBA)
+        self.draw2.override_background_color(Gtk.StateFlags.NORMAL,draw2RGBA)
+        self.draw1a.override_background_color(Gtk.StateFlags.NORMAL,draw1aRGBA)
+        self.draw1b.override_background_color(Gtk.StateFlags.NORMAL,draw1bRGBA)
+        return True
+        
     def finish_initializing(self, builder): # pylint: disable=E1002
         """Set up the main window"""
         super(FibclockWindow, self).finish_initializing(builder)
@@ -74,4 +70,4 @@ class FibclockWindow(Window):
         self.draw1a = self.builder.get_object("drawAreaFor1a")
         self.draw1b = self.builder.get_object("drawAreaFor1b")
         
-        self.showCurrentTime()
+        self.updateUI()

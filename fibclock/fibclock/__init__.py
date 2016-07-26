@@ -31,5 +31,6 @@ def main():
 
     # Run the application.    
     window = FibclockWindow.FibclockWindow()
-    window.show()
+    window.show_all()
+    window.connect('delete-event' , Gtk.main_quit)
     Gtk.main()
