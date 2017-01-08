@@ -31,6 +31,8 @@ Adafruit_NeoPixel fibLEDs = Adafruit_NeoPixel(5, PIN, NEO_GRB + NEO_KHZ800);
 
 int fibNumArray[5] = {5, 3, 2, 1, 1};
 int fibFlagArray[5] = {0, 0, 0, 0, 0};
+int hour_counter =  0;
+int minute_counter = 0;
 
 //********************************************************
 //
@@ -57,8 +59,6 @@ void convertNumberToFibFlagArray(int number, int unit)
 {
   int index = 0;
   int sum = 0;
-
-  initFibFlagArray();
   
   while(index < 5){
     sum += fibNumArray[index];
@@ -88,6 +88,10 @@ void updateFibLEDs(void)
   int index = 0;
   
   for(index = 0; index < 5; index++){
+    Serial.print(fibNumArray[index]);
+    Serial.print("\t");
+    Serial.print(fibFlagArray[index]);
+    Serial.println("");
     switch(fibFlagArray[index]){
 
     case NONE :
@@ -111,6 +115,9 @@ void setup() {
   Serial.begin(9600);
   while (!Serial) ; // wait for serial
   delay(200);
+  
+  hour_counter = 0;
+  minute_counter = 0;
 
   fibLEDs.begin();
   fibLEDs.show(); // Initialize all pixels to 'off'
@@ -134,10 +141,22 @@ void loop() {
     Serial.write('/');
     Serial.print(tmYearToCalendar(tm.Year));
     Serial.println();
+    
+    if(tm.Minute - minute_counter >= 5){
+      initFibFlagArray();
 
-    convertNumberToFibFlagArray(tm.Hour, 1);
-    convertNumberToFibFlagArray(tm.Minute/5, 2);
-    updateFibLEDs();
+      if(tm.Hour > 12 ){
+        convertNumberToFibFlagArray(tm.Hour - 12 , 1);
+      }
+      else {
+        convertNumberToFibFlagArray(tm.Hour, 1);
+      }
+      
+      convertNumberToFibFlagArray(tm.Minute/5, 2);
+      updateFibLEDs();
+      
+      minute_counter = (tm.Minute/5) * 5;
+    }
   } else {
     if (RTC.chipPresent()) {
       Serial.println("The DS1307 is stopped.  Please run the SetTime");
