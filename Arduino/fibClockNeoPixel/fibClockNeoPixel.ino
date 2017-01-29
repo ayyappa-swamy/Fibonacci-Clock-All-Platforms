@@ -1,6 +1,9 @@
 //*****************************************************************************
 // fibClock.ino - Code for Fibonacci clock operation
 //*****************************************************************************
+//Connections - 
+//DS1307 : Vcc- 5V ,GND- GND, SDA- A5, SCL- A4
+//NeoPixels : Vcc- 5V, GND- GND, DIN- Digital Pin 6  
 
 #include <Wire.h>
 #include <TimeLib.h>
@@ -12,6 +15,7 @@
 
 // How many NeoPixels are attached to the Arduino?
 #define NUM_OF_FIB_PIXELS      5
+#define BRIGHTNESS 50
 
 #define NONE 0
 #define HOURS 1
@@ -98,16 +102,17 @@ void updateFibLEDs(void)
           fibLEDs.setPixelColor(index, 0);
           break;
     case HOURS :
-          fibLEDs.setPixelColor(index, fibLEDs.Color(255, 0, 0));
+          fibLEDs.setPixelColor(index, fibLEDs.Color(BRIGHTNESS, 0, 0));
           break;
     case MINUTES :
-          fibLEDs.setPixelColor(index, fibLEDs.Color(0, 255, 0));
+          fibLEDs.setPixelColor(index, fibLEDs.Color(0, BRIGHTNESS, 0));
           break;
     case BOTH :
-          fibLEDs.setPixelColor(index, fibLEDs.Color(0, 0, 255));
+          fibLEDs.setPixelColor(index, fibLEDs.Color(0, 0, BRIGHTNESS));
           break;
     }
   }
+  fibLEDs.show();
 }
 
 void setup() {
