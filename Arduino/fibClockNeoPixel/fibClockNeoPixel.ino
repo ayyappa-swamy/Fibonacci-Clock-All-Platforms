@@ -147,10 +147,13 @@ void loop() {
     Serial.print(tmYearToCalendar(tm.Year));
     Serial.println();
     
-    if(tm.Minute - minute_counter >= 5){
+    if(abs(tm.Minute - minute_counter) >= 5){
       initFibFlagArray();
 
-      if(tm.Hour > 12 ){
+      if(tm.Hour == 0){
+        convertNumberToFibFlagArray(12 , 1);
+      }
+      else if(tm.Hour > 12 ){
         convertNumberToFibFlagArray(tm.Hour - 12 , 1);
       }
       else {
