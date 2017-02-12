@@ -122,7 +122,7 @@ void setup() {
   delay(200);
   
   hour_counter = 0;
-  minute_counter = 0;
+  minute_counter = -5;
 
   fibLEDs.begin();
   fibLEDs.show(); // Initialize all pixels to 'off'
